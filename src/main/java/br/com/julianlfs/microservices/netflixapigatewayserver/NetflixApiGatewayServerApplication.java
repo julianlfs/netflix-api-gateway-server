@@ -1,9 +1,11 @@
 package br.com.julianlfs.microservices.netflixapigatewayserver;
 
+import brave.sampler.Sampler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 
 @EnableZuulProxy
 @EnableDiscoveryClient
@@ -14,4 +16,8 @@ public class NetflixApiGatewayServerApplication {
         SpringApplication.run(NetflixApiGatewayServerApplication.class, args);
     }
 
+    @Bean
+    public Sampler defaultSampler() {
+        return Sampler.ALWAYS_SAMPLE;
+    }
 }
